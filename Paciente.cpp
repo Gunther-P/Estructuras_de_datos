@@ -1,48 +1,57 @@
 #include "Paciente.hpp"
-#include <iostream>
-#include <cstdlib> 
-#include <cstdio>
-using namespace std;
 
-Paciente::Paciente() {
-    this->ID = ID;
-    
-    this->enfermedad = rand() % 2; 
-    
-	for (int i = 0; i < 8; ++i) {
-		this->dni[i] = '0' + (rand() % 10); 
-	}
-
-	this->dni[8] = 'A' + (rand() % 26);
-
-	this->dni[9] = '\0';
+Paciente::Paciente()
+{
+    generarDni();
+    hernia = (rand() % 2 == 1);
+    id = 0;
+    habitacion = 0;
 }
 
-Paciente::~Paciente() {
+Paciente::~Paciente() {}
+
+void Paciente::mostrar() const
+{
+    cout << "El paciente cuyo DNI es " << dni << " tiene ";
+    cout << (hernia ? "hernias" : "apendicitis");
+
+    if (id > 0) {
+        cout << ", su ID es: " << id << " y su habitacion asignada es: " << habitacion;
+    }
+    cout << endl;
 }
 
-int Paciente::getID() {
-    return this->ID;
+void Paciente::generarDni()
+{
+    int i;
+    dni = "";
+    for(i = 0; i < 8; i++) {
+        dni = dni + (char)('0' + rand() % 10);
+    }
+    dni = dni + (char)('A' + rand() % 26);
 }
 
-int Paciente::getnumhabitacion() {
-    return this->numhabitacion;
+bool Paciente::get_enfermedad()
+{
+    return this->hernia;
 }
 
-bool Paciente::getenfermedad() {
-    return this->enfermedad;
+int Paciente::get_ID()
+{
+    return this->id;
 }
 
-void Paciente::setID(int nuevoID) {
-	this->ID = nuevoID;
-}
-void Paciente::setnumhabitacion(int nuevonumhabitacion) {
-	this->numhabitacion = nuevonumhabitacion;
+int Paciente::get_habitacion()
+{
+    return this->habitacion;
 }
 
-void Paciente::mostrar() {
-    cout << " El paciente cuyo DNI es " << this->dni << " tiene " << (this->enfermedad ? "apendicitis" : "hernias") 
-	     << endl;
+void Paciente::set_ID(int i)
+{
+    id = i;
 }
 
-
+void Paciente::set_habitacion(int h)
+{
+    habitacion = h;
+}
