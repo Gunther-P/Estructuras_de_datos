@@ -1,21 +1,28 @@
 #ifndef PACIENTE_HPP
 #define PACIENTE_HPP
 
+#include <iostream>
+#include <string>
+#include <cstdlib>
+using namespace std;
+
 class Paciente {
-private:
-	bool enfermedad; 
-	int ID;
-	int numhabitacion;
-	char dni[10];
-public:
-	Paciente();
-	~Paciente();
-	int getID();
-	int getnumhabitacion();
-	bool getenfermedad();
-	void setID(int nuevoID);
-	void setnumhabitacion (int nuevonumhabitacion);
-	void mostrar();
+    public:
+        Paciente();
+        ~Paciente();
+        void mostrar() const;
+        bool get_enfermedad();
+        int get_ID();
+        int get_habitacion();
+        void set_ID(int i);
+        void set_habitacion(int h);
+
+    private:
+        string dni;
+        bool hernia;
+        int id;
+        int habitacion;
+        void generarDni();
 };
 
-#endif // PACIENTE_HPP
+#endif
